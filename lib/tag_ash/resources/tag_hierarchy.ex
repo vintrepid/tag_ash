@@ -9,6 +9,11 @@ defmodule TagAsh.Resources.TagHierarchy do
   postgres do
     table "tag_ash_tag_hierarchies"
     repo &TagAsh.Config.repo!/2
+
+    references do
+      reference :parent_tag, on_delete: :delete
+      reference :child_tag, on_delete: :delete
+    end
   end
 
   actions do

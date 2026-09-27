@@ -18,6 +18,7 @@ defmodule TagAsh.Domain do
     end
 
     resource TagAsh.Resources.SubjectTag do
+      define :assignments, action: :read
       define :subject_tags, action: :for_subject, args: [:subject_ref]
       define :attach_tag, action: :attach
       define :detach_tag, action: :destroy

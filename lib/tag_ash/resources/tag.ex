@@ -9,6 +9,10 @@ defmodule TagAsh.Resources.Tag do
   postgres do
     table "tag_ash_tags"
     repo &TagAsh.Config.repo!/2
+
+    references do
+      reference :context, on_delete: :delete
+    end
   end
 
   actions do
