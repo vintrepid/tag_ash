@@ -1,0 +1,40 @@
+defmodule TagAsh.MixProject do
+  use Mix.Project
+
+  @version "0.1.0-alpha.1"
+  @source_url "https://github.com/vintrepid/tag_ash"
+
+  def project do
+    [
+      app: :tag_ash,
+      version: @version,
+      elixir: "~> 1.20",
+      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+      description: "Reusable hierarchical classification for Ash applications",
+      package: package(),
+      source_url: @source_url
+    ]
+  end
+
+  def application do
+    [extra_applications: [:logger]]
+  end
+
+  defp deps do
+    [
+      {:ash, "~> 3.0"},
+      {:ash_postgres, "~> 2.0"},
+      {:sourceror, "~> 1.12", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["Vince Nibler"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => @source_url},
+      files: ~w(lib .formatter.exs mix.exs README.md LICENSE AGENTS.md)
+    ]
+  end
+end
