@@ -1,7 +1,7 @@
 defmodule TagAsh.Resources.Context do
   @moduledoc "A named tag vocabulary with an optional cardinality constraint."
 
-  use Ash.Resource,
+  use TagAsh.Resource,
     otp_app: :tag_ash,
     domain: TagAsh.Domain,
     data_layer: AshPostgres.DataLayer
@@ -12,7 +12,13 @@ defmodule TagAsh.Resources.Context do
   end
 
   actions do
-    defaults [:read, :destroy]
+    defaults [:read]
+
+    destroy :destroy do
+      primary? true
+      require_atomic? false
+      atomic_upgrade? false
+    end
 
     read :by_key do
       argument :owner_ref, :string, allow_nil?: false

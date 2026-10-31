@@ -1,7 +1,7 @@
 defmodule TagAsh.Resources.TagHierarchy do
   @moduledoc "A directed parent-child relationship between tags."
 
-  use Ash.Resource,
+  use TagAsh.Resource,
     otp_app: :tag_ash,
     domain: TagAsh.Domain,
     data_layer: AshPostgres.DataLayer
@@ -17,7 +17,13 @@ defmodule TagAsh.Resources.TagHierarchy do
   end
 
   actions do
-    defaults [:read, :destroy]
+    defaults [:read]
+
+    destroy :destroy do
+      primary? true
+      require_atomic? false
+      atomic_upgrade? false
+    end
 
     create :link do
       accept [:parent_tag_id, :child_tag_id]

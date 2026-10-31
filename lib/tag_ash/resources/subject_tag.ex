@@ -1,7 +1,7 @@
 defmodule TagAsh.Resources.SubjectTag do
   @moduledoc "A many-to-many assignment between a host subject and a tag."
 
-  use Ash.Resource,
+  use TagAsh.Resource,
     otp_app: :tag_ash,
     domain: TagAsh.Domain,
     data_layer: AshPostgres.DataLayer
@@ -16,7 +16,13 @@ defmodule TagAsh.Resources.SubjectTag do
   end
 
   actions do
-    defaults [:read, :destroy]
+    defaults [:read]
+
+    destroy :destroy do
+      primary? true
+      require_atomic? false
+      atomic_upgrade? false
+    end
 
     read :for_subject do
       argument :subject_ref, :string, allow_nil?: false

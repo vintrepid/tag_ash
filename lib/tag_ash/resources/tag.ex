@@ -1,7 +1,7 @@
 defmodule TagAsh.Resources.Tag do
   @moduledoc "One reusable label in a tag context."
 
-  use Ash.Resource,
+  use TagAsh.Resource,
     otp_app: :tag_ash,
     domain: TagAsh.Domain,
     data_layer: AshPostgres.DataLayer
@@ -16,7 +16,13 @@ defmodule TagAsh.Resources.Tag do
   end
 
   actions do
-    defaults [:read, :destroy]
+    defaults [:read]
+
+    destroy :destroy do
+      primary? true
+      require_atomic? false
+      atomic_upgrade? false
+    end
 
     read :for_context do
       argument :context_id, :uuid, allow_nil?: false
