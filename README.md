@@ -28,13 +28,9 @@ The resources use the `tag_ash_` table prefix and UUIDv7 identities. Subjects
 are referenced by stable opaque strings, so TagAsh does not depend on host
 resource modules or primary-key types.
 
-### Host deletion policy
+### Referential integrity
 
-Every classification resource adopts `TagAsh.Resource`. A host may configure
-`config :tag_ash, :destroy_change, MyHost.SharedDeletionChange` to run its own
-`Ash.Resource.Change` before deletion. The callback receives the unchanged Ash
-changeset and action context; TagAsh does not depend on a host module or invent
-workflow policy. With no callback configured, deletion behavior is unchanged.
-Hard deletes use transactional streamed actions so the hook cannot be skipped by
-an atomic bulk optimization. The host remains responsible for authorization,
-confirmation and relationship metadata.
+All classification resources adopt the native `AshRi` resource extension.
+Configure `:ash_ri, :adapter` with the host's RI metadata/schema boundary.
+AshRi owns destroy hooks and review planning; TagAsh declares no host workflow.
+Hosts retain authorization, policy persistence, confirmation UI and reporting.
