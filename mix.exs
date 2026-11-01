@@ -24,9 +24,9 @@ defmodule TagAsh.MixProject do
   defp deps do
     [
       {:ash_ri, github: "vintrepid/ash_ri", ref: "de13c28039041972c8c03597611708ae4e07e4e0"},
-      {:ash, "~> 3.0"},
-      {:ash_postgres, "~> 2.0"},
-      {:sourceror, "~> 1.12", only: [:dev, :test], runtime: false}
+      {:ash, "~> 3.37 and >= 3.37.2"},
+      {:ash_postgres, "~> 2.15 and >= 2.15.2"},
+      {:sourceror, "~> 1.13", only: [:dev, :test], runtime: false}
     ]
   end
 
