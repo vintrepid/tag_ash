@@ -38,7 +38,14 @@ defmodule TagAsh.MixProject do
   end
 
   defp aliases do
-    [precommit: ["format --check-formatted", "compile --force --warnings-as-errors", "test"]]
+    [
+      precommit: [
+        "format --check-formatted",
+        "compile --force --warnings-as-errors",
+        "ash.codegen --dry-run",
+        "test"
+      ]
+    ]
   end
 
   defp package do

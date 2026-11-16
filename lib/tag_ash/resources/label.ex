@@ -4,6 +4,7 @@ defmodule TagAsh.Resources.Label do
 
   postgres do
     table "tag_ash_labels"
+    identity_wheres_to_sql preferred_language: "kind = 'preferred'"
     repo &TagAsh.Config.repo!/2
 
     references do
