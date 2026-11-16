@@ -70,7 +70,7 @@ defmodule TagAsh.Vocabulary do
   end
 
   @spec iri(String.t()) :: String.t()
-  def iri(id), do: "urn:tag-ash:" <> URI.encode(id, &URI.char_unreserved?/1)
+  def iri(id), do: "urn:uuid:" <> String.downcase(id)
 
   @doc "Export only the already-authorized instances supplied by the host. This function never fetches resources."
   @spec export(map(), [map()], [map()], [map()], [map()]) :: map()
