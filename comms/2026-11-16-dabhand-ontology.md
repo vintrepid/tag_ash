@@ -30,3 +30,7 @@ no warnings or checks were disabled. Locked dependencies restored with deps.get;
 no dependency-version changes. Host migration/database/authorization verification
 is still pending; consumer pins have not changed during Dabhand’s active rollout.
 No claim of an OWL reasoner or serialized validation of all persisted graph edits.
+
+Added the standard mix precommit alias with preferred test environment, so
+nightly library maintenance uses its synthetic host automatically. Strict gate
+passed12 tests again, /private/tmp/tag-ash-vocabulary-precommit.log, session56480.

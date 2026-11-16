@@ -74,3 +74,6 @@ MIX_ENV=test mix do format --check-formatted + compile --force --warnings-as-err
 
 Hosts additionally verify their own generated migrations, database constraints,
 and authorization boundary. Library unit checks do not replace those checks.
+
+`mix precommit` selects that test environment and runs the same complete gate.
+This is also the entry point for shared dependency-maintenance automation.
