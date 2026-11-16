@@ -61,6 +61,14 @@ defmodule TagAsh.Resources.Tag do
       attribute_writable? true
     end
 
+    has_many :labels, TagAsh.Resources.Label
+
+    has_many :outgoing_relations, TagAsh.Resources.ConceptRelation,
+      destination_attribute: :left_tag_id
+
+    has_many :incoming_relations, TagAsh.Resources.ConceptRelation,
+      destination_attribute: :right_tag_id
+
     has_many :assignments, TagAsh.Resources.SubjectTag
     has_many :parent_links, TagAsh.Resources.TagHierarchy, destination_attribute: :child_tag_id
     has_many :child_links, TagAsh.Resources.TagHierarchy, destination_attribute: :parent_tag_id

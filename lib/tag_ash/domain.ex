@@ -29,5 +29,18 @@ defmodule TagAsh.Domain do
       define :link_tags, action: :link
       define :unlink_tags, action: :destroy
     end
+
+    resource TagAsh.Resources.Label do
+      define :labels, action: :read
+      define :labels_for_tag, action: :for_tag, args: [:tag_id]
+      define :collect_label, action: :collect
+      define :set_label_kind, action: :set_kind
+    end
+
+    resource TagAsh.Resources.ConceptRelation do
+      define :concept_relations, action: :read
+      define :relations_for_tag, action: :for_tag, args: [:tag_id]
+      define :collect_relation, action: :collect
+    end
   end
 end
