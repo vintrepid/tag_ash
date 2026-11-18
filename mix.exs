@@ -30,7 +30,7 @@ defmodule TagAsh.MixProject do
 
   defp deps do
     [
-      {:ash_ri, github: "vintrepid/ash_ri", ref: "275a538e6896235605208cde5e9246a9fa101dfd"},
+      {:ash_ri, github: "vintrepid/ash_ri", ref: "208c50957211a7094669dc9c0347b04b23c446a1"},
       {:ash, ">= 3.37.2"},
       {:ash_postgres, ">= 2.15.2"},
       {:sourceror, ">= 1.13.0", only: [:dev, :test], runtime: false}
