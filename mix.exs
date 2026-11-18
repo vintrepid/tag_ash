@@ -12,11 +12,14 @@ defmodule TagAsh.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      aliases: aliases(),
       description: "Reusable hierarchical classification for Ash applications",
       package: package(),
       source_url: @source_url
     ]
   end
+
+  def cli, do: [preferred_envs: [precommit: :test]]
 
   def application do
     [extra_applications: [:logger]]
@@ -31,6 +34,17 @@ defmodule TagAsh.MixProject do
       {:ash, ">= 3.37.2"},
       {:ash_postgres, ">= 2.15.2"},
       {:sourceror, ">= 1.13.0", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp aliases do
+    [
+      precommit: [
+        "format --check-formatted",
+        "compile --force --warnings-as-errors",
+        "ash.codegen --dry-run",
+        "test"
+      ]
     ]
   end
 
